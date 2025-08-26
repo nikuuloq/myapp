@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,10 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'drf_spectacular',
 
-    'apps.beauty',
     'apps.beauty.apps.BeautyConfig',
-    'apps.users.apps.UsersConfig',
 
 
 ]
@@ -59,44 +59,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'mirkrasoty.urls'
 
-from pathlib import Path
-import os
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-INSTALLED_APPS = [
-    # стандартные приложения Django
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-
-    # твои приложения
-    'apps.beauty.apps.BeautyConfig',
-    # 'apps.booking.apps.BookingConfig', # если есть другое
-]
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
-            os.path.join(BASE_DIR, 'apps', 'beauty', 'templates'),
-        ],
-
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -104,15 +73,6 @@ TEMPLATES = [
         },
     },
 ]
-
-ROOT_URLCONF = 'mirkrasoty.urls'
-
-WSGI_APPLICATION = 'mirkrasoty.wsgi.application'
-
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 WSGI_APPLICATION = 'mirkrasoty.wsgi.application'
 
@@ -191,3 +151,4 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
+
