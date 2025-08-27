@@ -44,8 +44,8 @@ INSTALLED_APPS = [
 
     'apps.beauty.apps.BeautyConfig',
     'apps.users.apps.UsersConfig',
-
-
+    'apps.cart.apps.CartConfig',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -63,7 +63,7 @@ ROOT_URLCONF = 'mirkrasoty.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        "DIRS": [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -153,5 +153,10 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
+
 AUTH_USER_MODEL = 'users.CustomUser'
 
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "darkly",
+}

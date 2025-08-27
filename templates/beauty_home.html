@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная — Косметика</title>
+</head>
+<body>
+    <h1>Категории</h1>
+    <ul>
+        {% for category in categories %}
+            <li>{{ category.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Товары</h2>
+    <ul>
+        {% for product in products %}
+            <li>
+                <strong>{{ product.name }}</strong> — {{ product.price }} ₽
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
