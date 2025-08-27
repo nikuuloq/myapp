@@ -1,0 +1,27 @@
+.venv
+.idea
+.gitignore
+db.sqlite3
+
+__pycache__
+.pyc
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.log
+*.env
+
+# Sanal ortam
+.venv/
+env/
+venv/
+
+# IDE dosyaları
+.idea/
+.vscode/
+
+# OS dosyaları
+.DS_Store
+Thumbs.db
