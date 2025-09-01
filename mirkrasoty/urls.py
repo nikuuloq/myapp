@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
@@ -28,6 +29,9 @@ urlpatterns = [
     path('api/swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger'),
     path('api/beauty/', include('apps.beauty.urls')),
     path('api/cart/', include('apps.cart.urls')),
+    path("api/orders/", include("apps.orders.urls")),
+    path('', TemplateView.as_view(template_name="home.html"), name='home'),
+
 
 ]
 

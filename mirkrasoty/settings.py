@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'apps.beauty.apps.BeautyConfig',
     'apps.users.apps.UsersConfig',
     'apps.cart.apps.CartConfig',
+    'apps.orders.apps.OrdersConfig',
     'rest_framework_simplejwt',
 ]
 
