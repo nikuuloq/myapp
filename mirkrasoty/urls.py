@@ -11,7 +11,7 @@ urlpatterns = [
     path('beauty/', include('apps.beauty.urls')),
 
     # Авторизация
-    path('api/auth/', include("apps.user.urls")),
+    # path('api/auth/', include("apps.user.urls")),
 
     # API документация
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
