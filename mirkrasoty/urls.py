@@ -30,8 +30,7 @@ urlpatterns = [
     path('api/beauty/', include('apps.beauty.urls')),
     path('api/cart/', include('apps.cart.urls')),
     path("api/orders/", include("apps.orders.urls")),
-    path('', TemplateView.as_view(template_name="home.html"), name='home'),
-
+    path('', TemplateView.as_view(template_name='beauty_home.html')),
 
 ]
 
