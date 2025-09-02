@@ -5,6 +5,11 @@ from .models import CartItem
 from .serializers import CartItemSerializer
 from apps.beauty.models import Product
 
+from rest_framework.views import APIView
+from apps.orders.models import Order, OrderItem
+from apps.orders.serializers import OrderSerializer
+
+
 # Sepeti görüntüle
 class CartListView(generics.ListAPIView):
     serializer_class = CartItemSerializer
@@ -73,3 +78,32 @@ class CartUpdateView(generics.UpdateAPIView):
             return Response(serializer.data)
         except CartItem.DoesNotExist:
             return Response({"error": "Ürün sepette bulunamadı."}, status=status.HTTP_404_NOT_FOUND)
+
+
+
+class CartCheckoutView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        # Kullanıcının sepeti
+        cart_items = CartItem.objects.filter(user=request.user)
+        if not cart_items.exists():
+            return Response({"detail": "Sepet boş."}, status=400)
+
+        # Sipariş oluştur
+        order = Order.objects.create(user=request.user, address=request.data.get("address"))
+
+        # CartItem'ları OrderItem'a çevir
+        for item in cart_items:
+            OrderItem.objects.create(
+                order=order,
+                product=item.product,
+                quantity=item.quantity,
+                price=item.product.price  # sipariş anındaki fiyat
+            )
+
+        # Sepeti temizle
+        cart_items.delete()
+
+        serializer = OrderSerializer(order)
+        return Response(serializer.data, status=201)
