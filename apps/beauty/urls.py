@@ -1,17 +1,19 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from . import views
-
-router = DefaultRouter()
-router.register(r'products', views.ProductViewSet, basename='products')
-router.register(r'categories', views.CategoryViewSet, basename='categories')
-
+from django.urls import path
+from .views import (
+    home,
+    CategoryListCreateAPI, CategoryDetailAPI,
+    ProductListCreateAPI, ProductDetailAPI,
+)
 
 urlpatterns = [
-    path('', views.home, name='home'),  # главная страница
-    path('products/', views.product_list, name='product_list'),
-    path('categories/', views.category_list, name='category_list'),
-    path('delivery/', views.delivery_info, name='delivery_info'),
+    # HTML
+    path("", home, name="home"),
 
-    path('api/', include(router.urls)),  # API endpoints (DRF)
+    # API - Kategoriler
+    path("api/categories/", CategoryListCreateAPI.as_view(), name="category-list-create"),
+    path("api/categories/<int:pk>/", CategoryDetailAPI.as_view(), name="category-detail"),
+
+    # API - Ürünler
+    path("api/products/", ProductListCreateAPI.as_view(), name="product-list-create"),
+    path("api/products/<int:pk>/", ProductDetailAPI.as_view(), name="product-detail"),
 ]
