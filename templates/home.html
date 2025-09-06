@@ -1,0 +1,15 @@
+<h1>Привет, это главная страница!</h1>
+
+<h2>Категории:</h2>
+<ul>
+  {% for category in categories %}
+    <li>{{ category.name }}</li>
+  {% endfor %}
+</ul>
+
+<h2>Продукты:</h2>
+<ul>
+  {% for product in products %}
+    <li>{{ product.name }} - {{ product.price }}</li>
+  {% endfor %}
+</ul>

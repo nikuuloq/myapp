@@ -1,3 +1,5 @@
+from gettext import install
+
 from django.contrib import admin
 from .models import Category, Product
 
