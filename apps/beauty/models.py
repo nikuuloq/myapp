@@ -45,7 +45,7 @@ class Wishlist(models.Model):
 class Rating(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="ratings")
-    score = models.PositiveIntegerField(default=1)  # 1-5 arası puan
+    score = models.PositiveIntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
