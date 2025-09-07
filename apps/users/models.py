@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.utils import timezone
+from django.contrib.auth.models import User
+from django.conf import settings
+
 
 
 class CustomUserManager(BaseUserManager):
@@ -44,3 +47,21 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    address = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.user.email  # CustomUser'da username yok, email kullan
+
+class Review(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    product = models.ForeignKey('beauty.Product', on_delete=models.CASCADE)
+    comment = models.TextField()
+    rating = models.IntegerField(default=5)  # 1–5 arası puan
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.email} - {self.product.title}"

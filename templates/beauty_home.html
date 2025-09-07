@@ -19,6 +19,10 @@
         .product-card p { color:#666; }
         .price { font-weight:bold; color:#e91e63; margin-top:10px; }
         footer { text-align:center; padding:20px; background:#222; color:white; margin-top:40px; }
+        form { margin-bottom:20px; display:flex; gap:15px; flex-wrap:wrap; }
+        form div { display:flex; flex-direction:column; }
+        form button { padding:5px 10px; background:#e91e63; color:white; border:none; cursor:pointer; border-radius:4px; margin-top:18px; }
+        form button:hover { background:#d81b60; }
     </style>
 </head>
 <body>
@@ -39,6 +43,26 @@
 
 <div class="container">
     <h2>Популярные товары</h2>
+
+    <!-- Фильтр -->
+    <form method="get">
+        <div>
+            <label>Категория:</label>
+            <input type="text" name="category" value="{{ request.GET.category }}">
+        </div>
+        <div>
+            <label>Мин. цена:</label>
+            <input type="number" name="min_price" value="{{ request.GET.min_price }}">
+        </div>
+        <div>
+            <label>Макс. цена:</label>
+            <input type="number" name="max_price" value="{{ request.GET.max_price }}">
+        </div>
+        <div>
+            <button type="submit">Фильтровать</button>
+        </div>
+    </form>
+
     <div class="product-grid">
         {% for product in products %}
             {% if product.is_active %}
