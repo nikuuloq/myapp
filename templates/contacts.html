@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Контакты — МирКрасоты</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin:0; background:#f4f4f4; }
+        header { background:#222; color:white; padding:20px 0; text-align:center; }
+        nav { background:#333; display:flex; justify-content:center; padding:10px 0; }
+        nav a { color:white; text-decoration:none; margin:0 15px; font-weight:bold; }
+        nav a:hover { text-decoration:underline; }
+        .container { max-width:800px; margin:30px auto; padding:20px; background:white; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+        h2 { text-align:center; color:#e91e63; }
+        .map { margin-top:20px; }
+        iframe { width:100%; height:300px; border:0; border-radius:8px; }
+        footer { background:#222; color:white; text-align:center; padding:20px; margin-top:30px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="{% static 'images/logo.png' %}" alt="МирКрасоты Logo" style="height:100px;">
+    <h1>МирКрасоты — Онлайн магазин красоты</h1>
+</header>
+
+<nav>
+    <a href="{% url 'home' %}">Главная</a>
+    <a href="#makeup">Макияж</a>
+    <a href="#skincare">Уход за кожей</a>
+    <a href="#perfume">Парфюм</a>
+    <a href="#haircare">Уход за волосами</a>
+    <a href="{% url 'contacts' %}">Контакты</a>
+</nav>
+
+<div class="container">
+    <h2>Свяжитесь с нами</h2>
+    <p><strong>Адрес:</strong> Бишкек, ул. Исанова 12</p>
+    <p><strong>Телефон:</strong> +996 700 123 456</p>
+    <p><strong>Email:</strong> info@mirkrasoty.kg</p>
+    <p><strong>Время работы:</strong> Пн–Сб 10:00 – 19:00</p>
+
+    <div class="map">
+        <h3>Мы на карте:</h3>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2924.448820517719!2d74.6059180153613!3d42.87462177915508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389ec830b69001ed%3A0x44ec9179024e1032!2z0YPQuy4g0JjQstCw0YjQvtCy0YHQutC40Lkg0LrRg9Cz0LvRjNC90YHQutC40LkgMTIsINCQ0LvQvNC10YHRgtCw0L3QuNC60LAgNzIwMDA!5e0!3m2!1sru!2skg!4v1625123456789"
+            allowfullscreen=""
+            loading="lazy">
+        </iframe>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 МирКрасоты — Все права защищены.
+</footer>
+
+</body>
+</html>

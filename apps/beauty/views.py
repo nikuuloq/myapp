@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
+from rest_framework.views import APIView
+
 from .models import Category, Product
 from .serializers import CategorySerializer, ProductSerializer
 
@@ -26,7 +28,7 @@ class CategoryDetailAPI(generics.RetrieveUpdateDestroyAPIView):
 
 
 # API: Ürünler
-class ProductListCreateAPI(generics.ListCreateAPIView):
+class ProductCreateAPI(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
@@ -34,3 +36,16 @@ class ProductListCreateAPI(generics.ListCreateAPIView):
 class ProductDetailAPI(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+class ProductUpdateAPI(generics.RetrieveUpdateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+
+class ProductDeleteAPI(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+
+def contacts(request):
+    return render(request, "contacts.html")
