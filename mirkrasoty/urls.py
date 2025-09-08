@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from django.views.generic import TemplateView
+from apps.beauty import views
 
 
 urlpatterns = [
@@ -31,6 +32,7 @@ urlpatterns = [
     path('api/cart/', include('apps.cart.urls')),
     path("api/orders/", include("apps.orders.urls")),
     path('', TemplateView.as_view(template_name='beauty_home.html')),
+    path("contacts/", views.contacts, name="contacts"),
 
 ]
 
