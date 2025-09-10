@@ -1,24 +1,93 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Главная — Косметика</title>
+    <title>МирКрасоты — Онлайн магазин красоты</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin:0; background:#f4f4f4; }
+        header { background:#222; color:white; padding:20px 0; text-align:center; }
+        nav { background:#333; display:flex; justify-content:center; padding:10px 0; }
+        nav a { color:white; text-decoration:none; margin:0 15px; font-weight:bold; }
+        nav a:hover { text-decoration:underline; }
+        .container { max-width:1000px; margin:30px auto; padding:0 20px; }
+        .product-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(250px,1fr)); gap:20px; }
+        .product-card { background:white; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); padding:15px; text-align:center; transition:transform 0.2s ease; }
+        .product-card:hover { transform:translateY(-5px); }
+        .product-card img { width:100%; max-height:200px; object-fit:contain; background:#eee; border-radius:4px; }
+        .product-card h3 { margin:10px 0 5px; }
+        .product-card p { color:#666; }
+        .price { font-weight:bold; color:#e91e63; margin-top:10px; }
+        footer { text-align:center; padding:20px; background:#222; color:white; margin-top:40px; }
+        form { margin-bottom:20px; display:flex; gap:15px; flex-wrap:wrap; }
+        form div { display:flex; flex-direction:column; }
+        form button { padding:5px 10px; background:#e91e63; color:white; border:none; cursor:pointer; border-radius:4px; margin-top:18px; }
+        form button:hover { background:#d81b60; }
+    </style>
 </head>
 <body>
-    <h1>Категории</h1>
-    <ul>
-        {% for category in categories %}
-            <li>{{ category.name }}</li>
-        {% endfor %}
-    </ul>
 
-    <h2>Товары</h2>
-    <ul>
+<header>
+    <img src="{% static 'images/logo.png' %}" alt="МирКрасоты Logo" style="height:100px;">
+    <h1>МирКрасоты — Онлайн магазин красоты</h1>
+</header>
+
+<nav>
+    <a href="{% url 'home' %}">Главная</a>
+    <a href="#makeup">Макияж</a>
+    <a href="#skincare">Уход за кожей</a>
+    <a href="#perfume">Парфюм</a>
+    <a href="#haircare">Уход за волосами</a>
+    <a href="{% url 'contacts' %}">Контакты</a>
+</nav>
+
+<div class="container">
+    <h2>Популярные товары</h2>
+
+    <!-- Фильтр -->
+    <form method="get">
+        <div>
+            <label>Категория:</label>
+            <input type="text" name="category" value="{{ request.GET.category }}">
+        </div>
+        <div>
+            <label>Мин. цена:</label>
+            <input type="number" name="min_price" value="{{ request.GET.min_price }}">
+        </div>
+        <div>
+            <label>Макс. цена:</label>
+            <input type="number" name="max_price" value="{{ request.GET.max_price }}">
+        </div>
+        <div>
+            <button type="submit">Фильтровать</button>
+        </div>
+    </form>
+
+    <div class="product-grid">
         {% for product in products %}
-            <li>
-                <strong>{{ product.name }}</strong> — {{ product.price }} ₽
-            </li>
+            {% if product.is_active %}
+            <a href="{% url 'product_detail' product.id %}" style="text-decoration:none;color:inherit;">
+                <div class="product-card">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.title }}">
+                    {% else %}
+                        <img src="https://via.placeholder.com/200x200?text=No+Image" alt="Нет изображения">
+                    {% endif %}
+                    <h3>{{ product.title }}</h3>
+                    <p>{{ product.description }}</p>
+                    <div class="price">{{ product.price|floatformat:0 }} сом</div>
+                </div>
+            </a>
+            {% endif %}
+        {% empty %}
+            <p>Товары не найдены.</p>
         {% endfor %}
-    </ul>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 МирКрасоты — Все права защищены.
+</footer>
+
 </body>
 </html>
