@@ -1,46 +1,29 @@
 {% load static %}
-<<<<<<< HEAD
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>МирКрасоты — Онлайн магазин красоты</title>
-=======
-<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Контакты — МирКрасоты</title>
->>>>>>> origin/test
     <style>
         body { font-family: Arial, sans-serif; margin:0; background:#f4f4f4; }
         header { background:#222; color:white; padding:20px 0; text-align:center; }
         nav { background:#333; display:flex; justify-content:center; padding:10px 0; }
         nav a { color:white; text-decoration:none; margin:0 15px; font-weight:bold; }
         nav a:hover { text-decoration:underline; }
-<<<<<<< HEAD
-        .container { max-width:1000px; margin:30px auto; padding:0 20px; }
-        .product-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(250px,1fr)); gap:20px; }
-        .product-card { background:white; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); padding:15px; text-align:center; transition:transform 0.2s ease; }
-        .product-card:hover { transform:translateY(-5px); }
-        .product-card img { width:100%; max-height:200px; object-fit:contain; background:#eee; border-radius:4px; }
-        .product-card h3 { margin:10px 0 5px; }
-        .product-card p { color:#666; }
-        .price { font-weight:bold; color:#e91e63; margin-top:10px; }
-        footer { text-align:center; padding:20px; background:#222; color:white; margin-top:40px; }
-=======
+
         .container { max-width:800px; margin:30px auto; padding:20px; background:white; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
         h2 { text-align:center; color:#e91e63; }
+
         .map { margin-top:20px; }
         iframe { width:100%; height:300px; border:0; border-radius:8px; }
+
         footer { background:#222; color:white; text-align:center; padding:20px; margin-top:30px; }
->>>>>>> origin/test
     </style>
 </head>
 <body>
 
 <header>
     <img src="{% static 'images/logo.png' %}" alt="МирКрасоты Logo" style="height:100px;">
-    <h1>МирКрасоты — Онлайн магазин красоты</h1>
+    <h1>Контакты — МирКрасоты</h1>
 </header>
 
 <nav>
@@ -53,28 +36,6 @@
 </nav>
 
 <div class="container">
-<<<<<<< HEAD
-    <h2>Популярные товары</h2>
-    <div class="product-grid">
-        {% for product in products %}
-            {% if product.is_active %}
-            <a href="{% url 'product_detail' product.id %}" style="text-decoration:none;color:inherit;">
-                <div class="product-card">
-                    {% if product.image %}
-                        <img src="{{ product.image.url }}" alt="{{ product.title }}">
-                    {% else %}
-                        <img src="https://via.placeholder.com/200x200?text=No+Image" alt="Нет изображения">
-                    {% endif %}
-                    <h3>{{ product.title }}</h3>
-                    <p>{{ product.description }}</p>
-                    <div class="price">{{ product.price|floatformat:0 }} сом</div>
-                </div>
-            </a>
-            {% endif %}
-        {% empty %}
-            <p>Товары не найдены.</p>
-        {% endfor %}
-=======
     <h2>Свяжитесь с нами</h2>
     <p><strong>Адрес:</strong> Бишкек, ул. Исанова 12</p>
     <p><strong>Телефон:</strong> +996 700 123 456</p>
@@ -88,7 +49,6 @@
             allowfullscreen=""
             loading="lazy">
         </iframe>
->>>>>>> origin/test
     </div>
 </div>
 

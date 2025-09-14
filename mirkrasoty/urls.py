@@ -20,12 +20,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 from django.views.generic import TemplateView
-<<<<<<< HEAD
+
 from apps.beauty import views
-=======
+
 from apps.beauty import views  # Örnek olarak beauty app'inde
 
->>>>>>> origin/test
+
+
+from apps.beauty import views
+
 
 
 urlpatterns = [
@@ -37,11 +40,11 @@ urlpatterns = [
     path('api/beauty/', include('apps.beauty.urls')),
     path('api/cart/', include('apps.cart.urls')),
     path("api/orders/", include("apps.orders.urls")),
-<<<<<<< HEAD
+
+
     path('', TemplateView.as_view(template_name='beauty_home.html')),
-=======
     path('', TemplateView.as_view(template_name="beauty_home.html"), name='home'),
->>>>>>> origin/test
+    path('', TemplateView.as_view(template_name="beauty_home.html"), name='home'),
     path("contacts/", views.contacts, name="contacts"),
 
 ]

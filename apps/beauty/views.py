@@ -39,13 +39,12 @@ class ProductDetailAPI(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-<<<<<<< HEAD
-=======
+
 class ProductUpdateAPI(generics.RetrieveUpdateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
->>>>>>> origin/test
+
 
 class ProductDeleteAPI(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
@@ -54,8 +53,7 @@ class ProductDeleteAPI(generics.RetrieveUpdateDestroyAPIView):
 
 def contacts(request):
     return render(request, "contacts.html")
-<<<<<<< HEAD
-=======
+
 
 
 def product_list(request):
@@ -106,4 +104,4 @@ class CommentListCreateAPI(generics.ListCreateAPIView):
 class CommentDetailAPI(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
->>>>>>> origin/test
+
